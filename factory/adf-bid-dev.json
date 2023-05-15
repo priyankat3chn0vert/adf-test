@@ -1,0 +1,9 @@
+{
+	"name": "adf-bid-dev",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "549b6319-e1fb-4cfe-b7e3-7a1453244ca6",
+		"tenantId": "865cc515-a530-4538-8ef8-072b7b2be759"
+	}
+}
