@@ -1,39 +1,46 @@
-name: CI/CD for ADF
-
- 
-
+name: ADF Deployment
 on:
-  push:
-    branches:
-      - deployment
-
- 
-
+  push:
+    branches:
+      - adf_publish
+  workflow_dispatch:
+    inputs:
+      skipAzModuleInstallation:
+        description: 'Parameters which skip the Az module installation'
+        required: false
+        default: 'false'
+        
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        stage: ['prod']
+      fail-fast: true
+      max-parallel: 1
+    environment:
+      name: ${{ matrix.stage }}
+      
+    steps:
+    - uses: actions/checkout@v3
 
- 
+    - name: Install Az PowerShell module
+      run: if('${{ inputs.skipAzModuleInstallation }}' -ne 'true') { Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force }
+      shell: pwsh
+      
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true 
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
- 
-
-      - name: Set up Azure PowerShell
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
- 
-
-      - name: Publish ADF pipeline
-        run: |
-          az datafactory pipeline create --resource-group <Resource_Group_Name> --factory-name <ADF_Name> --branch-name <Branch_Name> --git-configuration-type DevOpsGitConfiguration --git-repo-id <GitHub_Repo_ID> --git-repo-path <Folder_Path>
-
- 
-
-      - name: Deploy ADF changes
-        run: |
-          az datafactory pipeline-publish --resource-group <Resource_Group_Name> --factory-name <ADF_Name> --branch-name <Branch_Name>
+          
+      
+    - name: Deploy ADF ARM Templates ${{ matrix.stage }}
+      uses: Azure/arm-deploy@v1
+      with:
+        resourceGroupName: ${{ vars.AZURE_RG }}
+        template: ${{ vars.ARM_TEMPLATE_FILE }}
+        parameters: 
+          ${{ vars.ARM_TEMPLATE_PARAMETERS_FILE }}
+          factoryName=${{ vars.ADF_FACTORYNAME }}
