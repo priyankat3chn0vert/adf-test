@@ -1,0 +1,46 @@
+name: Synapse Deployment
+on:
+  push:
+    branches:
+      - workspace_publish
+  workflow_dispatch:
+    inputs:
+      skipAzModuleInstallation:
+        description: 'Parameters which skip the Az module installation'
+        required: false
+        default: 'false'
+        
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        stage: ['prod_syn']
+      fail-fast: true
+      max-parallel: 1
+    environment:
+      name: ${{ matrix.stage }}
+      
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install Az PowerShell module
+      run: if('${{ inputs.skipAzModuleInstallation }}' -ne 'true') { Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force }
+      shell: pwsh
+      
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS_SYN }}
+        enable-AzPSSession: true 
+
+          
+      
+    - name: Deploy ADF ARM Templates ${{ matrix.stage }}
+      uses: Azure/arm-deploy@v1
+      with:
+        resourceGroupName: ${{ vars.AZURE_RG_SYN }}
+        template: ${{ vars.ARM_TEMPLATE_FILE_SYN }}
+        parameters: 
+          ${{ vars.ARM_TEMPLATE_PARAMETERS_FILE_SYN }}
+          factoryName=${{ vars.SYN_WORKSPACE }}
