@@ -43,4 +43,4 @@ jobs:
         template: ${{ vars.ARM_TEMPLATE_FILE_SYN }}
         parameters: 
           ${{ vars.ARM_TEMPLATE_PARAMETERS_FILE_SYN }}
-          factoryName=${{ vars.SYN_WORKSPACE }}
+          workspaceName=${{ vars.SYN_WORKSPACE }}
