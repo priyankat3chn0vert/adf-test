@@ -1,0 +1,39 @@
+name: CI/CD for ADF
+
+ 
+
+on:
+  push:
+    branches:
+      - deployment
+
+ 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+ 
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+ 
+
+      - name: Set up Azure PowerShell
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+ 
+
+      - name: Publish ADF pipeline
+        run: |
+          az datafactory pipeline create --resource-group <Resource_Group_Name> --factory-name <ADF_Name> --branch-name <Branch_Name> --git-configuration-type DevOpsGitConfiguration --git-repo-id <GitHub_Repo_ID> --git-repo-path <Folder_Path>
+
+ 
+
+      - name: Deploy ADF changes
+        run: |
+          az datafactory pipeline-publish --resource-group <Resource_Group_Name> --factory-name <ADF_Name> --branch-name <Branch_Name>
