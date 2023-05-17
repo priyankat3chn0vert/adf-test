@@ -16,7 +16,7 @@ jobs:
           TargetWorkspaceName: 'synw-bis-prod'
           TemplateFile: 'synw-bis-dev/TemplateForWorkspace.json'
           ParametersFile: 'synw-bis-dev/TemplateParametersForWorkspace.json'
-          OverrideArmParameters: 'parameters/production/parameters.yml'
+          OverrideArmParameters: 'parameters/production/parameters.yaml'
           Environment: 'Azure Public'
           resourceGroup: 'PROD'
           clientId: '7d4100de-bd70-424a-afb4-3028cecba601'
