@@ -19,7 +19,7 @@ jobs:
           resourceGroup: 'PROD'
           clientId: '7d4100de-bd70-424a-afb4-3028cecba601'
           clientSecret:  'k2G8Q~_xzkGRvqWs5Uhdg4sfZ5hZDWL.lSPQibCl'
-          subscriptionId: '9eb9892d-4d82-4c17-a21c-f37555c98487 '
+          subscriptionId: '9eb9892d-4d82-4c17-a21c-f37555c98487'
           tenantId: '865cc515-a530-4538-8ef8-072b7b2be759'
           DeleteArtifactsNotInTemplate: 'true'
           managedIdentity: 'False'
