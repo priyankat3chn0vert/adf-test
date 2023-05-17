@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [workspace_branch]
+    branches: [workspace_publish]
 
 jobs:
   release:
