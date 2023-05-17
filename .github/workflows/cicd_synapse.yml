@@ -1,0 +1,25 @@
+on:
+  push:
+    branches: [workspace_branch]
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Deploy Synapse workspace
+        uses: azure/synapse-workspace-deployment@release-1.0
+        with:
+          TargetWorkspaceName: 'synw-bis-prod'
+          TemplateFile: 'synw-bis-dev/TemplateForWorkspace.json'
+          ParametersFile: 'synw-bis-dev/TemplateParametersForWorkspace.json'
+          environment: 'Azure Public'
+          resourceGroup: 'PROD'
+          clientId: '83d4d001-b19d-4776-b462-f99682e15255'
+          clientSecret: 'zCb8Q~sOu2Pb_Uk2HlFH9YelLQLJmuIWbSDxWa_m'
+          subscriptionId: '9eb9892d-4d82-4c17-a21c-f37555c98487'
+          tenantId: '865cc515-a530-4538-8ef8-072b7b2be759'
+          DeleteArtifactsNotInTemplate: 'true'
+          managedIdentity: 'False'
