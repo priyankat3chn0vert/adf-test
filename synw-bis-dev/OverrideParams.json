@@ -1,0 +1,16 @@
+// ./devazuresynapse/TemplateForWorkspace.json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "AppSecrets_properties_typeProperties_baseUrl": {
+      "value": "https://{{organization}}-dev-kv.Environment-kv.vault.azure.net/"
+    },
+    "devazuresynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
+      "value": "https://dev{{organization}}datalake.dfs.core.windows.net"
+    },
+    "AzureDeltaLake_properties_typeProperties_url": {
+      "value": "https://dev{{organization}}deltalake.dfs.core.windows.net"
+    }
+  }
+}
