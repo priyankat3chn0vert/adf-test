@@ -9,7 +9,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Deploy Synapse workspace
+      - name: Synapse workspace deployment
         uses: Azure/Synapse-workspace-deployment@V1.7.0
         with:
           TargetWorkspaceName: 'synw-bis-prod'
@@ -23,3 +23,7 @@ jobs:
           tenantId: '865cc515-a530-4538-8ef8-072b7b2be759'
           DeleteArtifactsNotInTemplate: 'true'
           managedIdentity: 'False'
+          operation: 'deploy'
+          
+          
+          
