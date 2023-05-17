@@ -9,15 +9,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         
-      - name: Deploy Azure Resource Manager (ARM) Template
-        uses: Azure/arm-deploy@v1.0.9
-        with:
-    # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
-          scope: 'resourcegroup'
-          
-          # Override the Subscription Id set by Azure Login
-          # Specify the path or URL to the Azure Resource Manager template.
-          template: 'synw-bis-dev/TemplateForWorkspace.json'
+
       - name: Synapse workspace deployment
         uses: Azure/Synapse-workspace-deployment@V1.7.0
         with:
