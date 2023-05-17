@@ -17,9 +17,9 @@ jobs:
           ParametersFile: 'synw-bis-dev/TemplateParametersForWorkspace.json'
           environment: 'Azure Public'
           resourceGroup: 'PROD'
-          clientId: '83d4d001-b19d-4776-b462-f99682e15255'
-          clientSecret: 'zCb8Q~sOu2Pb_Uk2HlFH9YelLQLJmuIWbSDxWa_m'
-          subscriptionId: '9eb9892d-4d82-4c17-a21c-f37555c98487'
-          tenantId: '865cc515-a530-4538-8ef8-072b7b2be759'
+          clientId: ${{ secrets.CLIENTID }}
+          clientSecret:  ${{ secrets.CLIENTSECRET }}
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_DEV }}
+          tenantId: ${{ secrets.AZURE_SYNAPSE_TENANT_ID_PROD }}
           DeleteArtifactsNotInTemplate: 'true'
           managedIdentity: 'False'
