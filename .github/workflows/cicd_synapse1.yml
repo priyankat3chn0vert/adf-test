@@ -4,26 +4,36 @@ on:
 
 jobs:
   release:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
+        
+      - name: Deploy Azure Resource Manager (ARM) Template
+        uses: Azure/arm-deploy@v1.0.9
+        with:
+    # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
+          scope: 'resourcegroup'
+          
+          # Override the Subscription Id set by Azure Login
+          # Specify the path or URL to the Azure Resource Manager template.
+          template: 'synw-bis-dev/TemplateForWorkspace.json'
       - name: Synapse workspace deployment
         uses: Azure/Synapse-workspace-deployment@V1.7.0
         with:
           TargetWorkspaceName: 'synw-bis-prod'
           TemplateFile: 'synw-bis-dev/TemplateForWorkspace.json'
           ParametersFile: 'synw-bis-dev/TemplateParametersForWorkspace.json'
-          environment: 'Azure Public'
+          Environment: 'Azure Public'
           resourceGroup: 'PROD'
           clientId: '7d4100de-bd70-424a-afb4-3028cecba601'
           clientSecret:  'k2G8Q~_xzkGRvqWs5Uhdg4sfZ5hZDWL.lSPQibCl'
           subscriptionId: '9eb9892d-4d82-4c17-a21c-f37555c98487'
           tenantId: '865cc515-a530-4538-8ef8-072b7b2be759'
           DeleteArtifactsNotInTemplate: 'true'
-          managedIdentity: 'False'
+          managedIdentity: 'false'
           operation: 'deploy'
+          
           
           
           
