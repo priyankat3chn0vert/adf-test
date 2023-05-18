@@ -19,6 +19,14 @@
 		"Pipeline1_properties_0_typeProperties": {
 			"type": "int"
 		},
+		"AzureDataLakeStorage_ls_myurl": {
+			"type": "string",
+			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net/"
+		},
+		"synw-bis-dev-WorkspaceDefaultStorage_myurl": {
+			"type": "string",
+			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net"
+		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"type": "object",
 			"defaultValue": {
@@ -66,6 +74,54 @@
 				"annotations": []
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Pipeline11')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Lookup1",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ParquetSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "ParquetReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "Parquet_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/Parquet_ds')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/lookup')]",
@@ -266,7 +322,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "https://stbisdeveuw.dfs.core.windows.net/",
+					"url": "[parameters('AzureDataLakeStorage_ls_myurl')]",
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage_ls_accountKey')]"
@@ -313,7 +369,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "https://stbisdeveuw.dfs.core.windows.net"
+					"url": "[parameters('synw-bis-dev-WorkspaceDefaultStorage_myurl')]"
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",
