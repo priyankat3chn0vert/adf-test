@@ -11,11 +11,24 @@
 		"synw-bis-dev-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synw-bis-dev.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
-		"AzureDataLakeStorage_ls_properties_typeProperties_url": {
-			"value": "https://stbisdeveuw.dfs.core.windows.net/"
+		"Pipeline1_properties_0_typeProperties": {
+			"value": ""
 		},
-		"synw-bis-dev-WorkspaceDefaultStorage_properties_typeProperties_url": {
-			"value": "https://stbisdeveuw.dfs.core.windows.net"
+		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
+			"value": {
+				"location": "AutoResolve",
+				"dataFlowProperties": {
+					"computeType": "General",
+					"coreCount": 8,
+					"timeToLive": 0
+				}
+			}
+		},
+		"Notebook_properties_bigDataPool_referenceName": {
+			"value": "sparkpool"
+		},
+		"Notebook2_properties_bigDataPool_referenceName": {
+			"value": "sparkpool"
 		}
 	}
 }
