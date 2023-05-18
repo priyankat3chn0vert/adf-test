@@ -39,65 +39,29 @@
             }
         }
     },
-    "Microsoft.Synapse/workspaces/triggers": {
-        "properties": {
-            "typeProperties": {
-                "recurrence": {
-                    "*": "=",
-                    "interval": "=:triggerSuffix:int",
-                    "frequency": "=:-freq"
-                },
-                "maxConcurrency": "="
-            }
-        }
-    },
     "Microsoft.Synapse/workspaces/linkedServices": {
         "*": {
             "properties": {
                 "typeProperties": {
-                    "accountName": "=",
-                    "username": "=",
-                    "connectionString": "|:-connectionString:secureString",
-                    "secretAccessKey": "|",
-                    "url": "=:-myurl:string"
+                    "accountName": "-",
+                    "username": "-",
+                    "connectionString": "-:-connectionString:secureString",
+                    "secretAccessKey": "-",
+                    "url": "-:-myurl:string"
                 }
             }
         },
         "AzureDataLakeStore": {
             "properties": {
                 "typeProperties": {
-                    "dataLakeStoreUri": "="
+                    "dataLakeStoreUri": "-"
                 }
             }
         },
-        "AzureKeyVault": {
-            "properties": {
-                "typeProperties": {
-                    "baseUrl": "|:baseUrl:secureString"
-                },
-                "parameters": {
-                    "KeyVaultURL": {
-                        "type": "=",
-                        "defaultValue": "|:defaultValue:secureString"
-                    }
-                }
-            }
-        }
-    },
-    "Microsoft.Synapse/workspaces/datasets": {
-        "*": {
-            "properties": {
-                "typeProperties": {
-                    "folderPath": "=",
-                    "fileName": "="
-                }
-            }
-        }
-    },
     "Microsoft.Synapse/workspaces/credentials" : {
         "properties": {
             "typeProperties": {
-                "resourceId": "="
+                "resourceId": "-"
             }
         }
     }
