@@ -1,0 +1,3 @@
+AzureDataLakeStorage_ls_myurl: https://stbiseuw.dfs.core.windows.net
+Notebook_properties_bigDataPool_referenceName: sparkpoolprod
+Notebook2_properties_bigDataPool_referenceName: sparkpoolprod
