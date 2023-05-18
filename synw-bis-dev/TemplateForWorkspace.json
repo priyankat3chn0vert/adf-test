@@ -68,6 +68,197 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/lookup')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Lookup1",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ParquetSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "ParquetReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "Parquet_ds",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/Parquet_ds')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Parquet_ds')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "A4LFOP_AccountsSuppliers_2023-05-11 07_17_48.050213.parquet",
+						"fileSystem": "stbisdeveuwfs"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "Name",
+						"type": "UTF8"
+					},
+					{
+						"name": "AdressId",
+						"type": "INT32"
+					},
+					{
+						"name": "PaymentTermId",
+						"type": "UTF8"
+					},
+					{
+						"name": "CurrencyCode",
+						"type": "UTF8"
+					},
+					{
+						"name": "DaysNetCash",
+						"type": "INT32"
+					},
+					{
+						"name": "DaysNetCashRuleSet",
+						"type": "UTF8"
+					},
+					{
+						"name": "DaysDiscount1",
+						"type": "INT32"
+					},
+					{
+						"name": "DaysDiscount1RuleSet",
+						"type": "UTF8"
+					},
+					{
+						"name": "DaysDiscount2",
+						"type": "INT32"
+					},
+					{
+						"name": "DaysDiscount2RuleSet",
+						"type": "UTF8"
+					},
+					{
+						"name": "PercentDiscount1",
+						"type": "DECIMAL",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "PercentDiscount2",
+						"type": "DECIMAL",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "EUCountry",
+						"type": "UTF8"
+					},
+					{
+						"name": "EUVAT",
+						"type": "UTF8"
+					},
+					{
+						"name": "IsActive",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "IsIntercompany",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "InternationalLocationNumber",
+						"type": "UTF8"
+					},
+					{
+						"name": "InvoiceReceiver",
+						"type": "UTF8"
+					},
+					{
+						"name": "IncotermId",
+						"type": "UTF8"
+					},
+					{
+						"name": "PartnerId",
+						"type": "UTF8"
+					},
+					{
+						"name": "Shipping",
+						"type": "UTF8"
+					},
+					{
+						"name": "ToPostTo",
+						"type": "INT32"
+					},
+					{
+						"name": "Remindable",
+						"type": "BOOLEAN"
+					},
+					{
+						"name": "SalesforceA4LAccountErpSiteId",
+						"type": "UTF8"
+					},
+					{
+						"name": "CompanyId",
+						"type": "INT32"
+					},
+					{
+						"name": "AccountId",
+						"type": "UTF8"
+					},
+					{
+						"name": "RawInsertedTimestamp",
+						"type": "UTF8"
+					},
+					{
+						"name": "IsTableSource",
+						"type": "UTF8"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/AzureDataLakeStorage_ls')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/AzureDataLakeStorage_ls')]",
 			"type": "Microsoft.Synapse/workspaces/linkedServices",
 			"apiVersion": "2019-06-01-preview",
@@ -176,7 +367,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "3635e8c7-9ee6-4e93-81a5-4a715e7c0636"
+						"spark.autotune.trackingId": "7e9d382c-e0e2-40fa-956d-53a2422ef48d"
 					}
 				},
 				"metadata": {
@@ -201,15 +392,13 @@
 						"sparkVersion": "3.3",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 30
 				},
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"print(\"shb123\")"
 						],
