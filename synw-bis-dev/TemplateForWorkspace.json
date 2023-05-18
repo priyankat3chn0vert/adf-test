@@ -19,14 +19,6 @@
 		"Pipeline1_properties_0_typeProperties": {
 			"type": "int"
 		},
-		"AzureDataLakeStorage_ls_myurl": {
-			"type": "string",
-			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net/"
-		},
-		"synw-bis-dev-WorkspaceDefaultStorage_myurl": {
-			"type": "string",
-			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net"
-		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"type": "object",
 			"defaultValue": {
@@ -83,7 +75,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('AzureDataLakeStorage_ls_myurl')]",
+					"url": "https://stbisdeveuw.dfs.core.windows.net/",
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage_ls_accountKey')]"
@@ -130,7 +122,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('synw-bis-dev-WorkspaceDefaultStorage_myurl')]"
+					"url": "https://stbisdeveuw.dfs.core.windows.net"
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",
@@ -184,7 +176,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "b59a402c-322a-4fe3-a844-1e9424b5de5c"
+						"spark.autotune.trackingId": "3635e8c7-9ee6-4e93-81a5-4a715e7c0636"
 					}
 				},
 				"metadata": {
@@ -219,7 +211,7 @@
 						"cell_type": "code",
 						"metadata": {},
 						"source": [
-							"print(\"shb1234\")"
+							"print(\"shb123\")"
 						],
 						"outputs": [],
 						"execution_count": null
