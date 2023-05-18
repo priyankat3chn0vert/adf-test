@@ -55,8 +55,8 @@
         "*": {
             "properties": {
                 "typeProperties": {
-                    "accountName": "-",
-                    "username": "-",
+                    "accountName": "=",
+                    "username": "=",
                     "connectionString": "|:-connectionString:secureString",
                     "secretAccessKey": "|",
                     "url": "=:-myurl:string"
