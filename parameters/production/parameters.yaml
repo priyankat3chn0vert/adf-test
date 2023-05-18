@@ -1,4 +1,4 @@
 # ./parameters/production/parameters.yaml
-AppSecrets_properties_typeProperties_baseUrl: https://{{organization}}-prod-kv.vault.azure.net/
-devazuresynapse-WorkspaceDefaultStorage_properties_typeProperties_url: https://dev{{organization}}datalake.dfs.core.windows.net
-AzureDeltaLake_properties_typeProperties_url: https://prod{{organization}}deltalake.dfs.core.windows.net
+AzureDataLakeStorage_ls_myurl: https://stbiseuw.dfs.core.windows.net
+Notebook_properties_bigDataPool_referenceName: sparkpoolprod
+Notebook2_properties_bigDataPool_referenceName: sparkpoolprod
