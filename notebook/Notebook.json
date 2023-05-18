@@ -17,11 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-        new_feature_syn
-				"spark.autotune.trackingId": "216d0710-7ab1-43ef-a94b-fd61403c1f6d"
-
-				"spark.autotune.trackingId": "7b9a40fb-7f5c-41ea-935f-4e0d9bf88fc7"
-        master_syn
+				"spark.autotune.trackingId": "9d219719-132e-47fb-aac3-81e619076de6"
 			}
 		},
 		"metadata": {
@@ -55,7 +51,7 @@
 			{
 				"cell_type": "code",
 				"source": [
-					"print(\"shb1\")"
+					"print(\"shb123\")"
 				],
 				"execution_count": null
 			}
