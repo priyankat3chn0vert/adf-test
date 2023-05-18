@@ -5,8 +5,14 @@
 		"workspaceName": {
 			"value": "synw-bis-dev"
 		},
+		"AzureDataLakeStorage_ls_accountKey": {
+			"value": ""
+		},
 		"synw-bis-dev-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synw-bis-dev.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"AzureDataLakeStorage_ls_properties_typeProperties_url": {
+			"value": "https://stbisdeveuw.dfs.core.windows.net/"
 		},
 		"synw-bis-dev-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://stbisdeveuw.dfs.core.windows.net"

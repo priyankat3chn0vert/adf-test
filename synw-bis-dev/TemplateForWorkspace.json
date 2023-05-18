@@ -7,10 +7,18 @@
 			"metadata": "Workspace name",
 			"defaultValue": "synw-bis-dev"
 		},
+		"AzureDataLakeStorage_ls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_ls'"
+		},
 		"synw-bis-dev-WorkspaceDefaultSqlServer_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'synw-bis-dev-WorkspaceDefaultSqlServer'",
 			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synw-bis-dev.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"AzureDataLakeStorage_ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net/"
 		},
 		"synw-bis-dev-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"type": "string",
@@ -44,6 +52,29 @@
 				"annotations": []
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AzureDataLakeStorage_ls')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage_ls_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage_ls_accountKey')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/synw-bis-dev-WorkspaceDefaultSqlServer')]",
@@ -201,7 +232,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "1ced42e0-2320-4eb9-8a0b-825ae55fab52"
+						"spark.autotune.trackingId": "9469590b-4f4e-4daf-9b9d-2e8caadf7a2f"
 					}
 				},
 				"metadata": {
@@ -226,15 +257,13 @@
 						"sparkVersion": "3.3",
 						"nodeCount": 10,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 30
 				},
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"print(\"Hello\")"
 						],
