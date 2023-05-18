@@ -58,8 +58,7 @@
                     "accountName": "=",
                     "username": "=",
                     "connectionString": "|:-connectionString:secureString",
-                    "secretAccessKey": "|",
-                    "url": "=:-myurl:string"
+                    "secretAccessKey": "|"
                 }
             }
         },
@@ -80,6 +79,16 @@
                         "type": "=",
                         "defaultValue": "|:defaultValue:secureString"
                     }
+                }
+            }
+        }
+    },
+    "Microsoft.Synapse/workspaces/datasets": {
+        "*": {
+            "properties": {
+                "typeProperties": {
+                    "folderPath": "=",
+                    "fileName": "="
                 }
             }
         }
