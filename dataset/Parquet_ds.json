@@ -1,0 +1,137 @@
+{
+	"name": "Parquet_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "A4LFOP_AccountsSuppliers_2023-05-11 07_17_48.050213.parquet",
+				"fileSystem": "stbisdeveuwfs"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Name",
+				"type": "UTF8"
+			},
+			{
+				"name": "AdressId",
+				"type": "INT32"
+			},
+			{
+				"name": "PaymentTermId",
+				"type": "UTF8"
+			},
+			{
+				"name": "CurrencyCode",
+				"type": "UTF8"
+			},
+			{
+				"name": "DaysNetCash",
+				"type": "INT32"
+			},
+			{
+				"name": "DaysNetCashRuleSet",
+				"type": "UTF8"
+			},
+			{
+				"name": "DaysDiscount1",
+				"type": "INT32"
+			},
+			{
+				"name": "DaysDiscount1RuleSet",
+				"type": "UTF8"
+			},
+			{
+				"name": "DaysDiscount2",
+				"type": "INT32"
+			},
+			{
+				"name": "DaysDiscount2RuleSet",
+				"type": "UTF8"
+			},
+			{
+				"name": "PercentDiscount1",
+				"type": "DECIMAL",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "PercentDiscount2",
+				"type": "DECIMAL",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "EUCountry",
+				"type": "UTF8"
+			},
+			{
+				"name": "EUVAT",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsActive",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsIntercompany",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "InternationalLocationNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "InvoiceReceiver",
+				"type": "UTF8"
+			},
+			{
+				"name": "IncotermId",
+				"type": "UTF8"
+			},
+			{
+				"name": "PartnerId",
+				"type": "UTF8"
+			},
+			{
+				"name": "Shipping",
+				"type": "UTF8"
+			},
+			{
+				"name": "ToPostTo",
+				"type": "INT32"
+			},
+			{
+				"name": "Remindable",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "SalesforceA4LAccountErpSiteId",
+				"type": "UTF8"
+			},
+			{
+				"name": "CompanyId",
+				"type": "INT32"
+			},
+			{
+				"name": "AccountId",
+				"type": "UTF8"
+			},
+			{
+				"name": "RawInsertedTimestamp",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsTableSource",
+				"type": "UTF8"
+			}
+		]
+	}
+}
