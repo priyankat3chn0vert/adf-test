@@ -89,8 +89,7 @@
             "properties": {
                 "typeProperties": {
                     "folderPath": "=",
-                    "fileName": "=",
-                    "fileSystem": "="
+                    "fileName": "="
                 }
             }
         }
