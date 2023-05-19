@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "A4LFOP_AccountsSuppliers_2023-05-11 07_17_48.050213.parquet",
+				"fileName": "Machines_A4LFOP_A4L_c3connectdev_Machines_2023_1_sheet1_2023-05-19 09_21_05.011540.parquet",
+				"folderPath": "abc",
 				"fileSystem": "stbisdeveuwfs"
 			},
 			"compressionCodec": "snappy"
