@@ -38,7 +38,7 @@
 				}
 			}
 		},
-		"Notebook_properties_bigDataPool_referenceName": {
+		"Notebook1_properties_bigDataPool_referenceName": {
 			"type": "string",
 			"defaultValue": "sparkpool"
 		},
@@ -403,14 +403,14 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/Notebook')]",
+			"name": "[concat(parameters('workspaceName'), '/Notebook1')]",
 			"type": "Microsoft.Synapse/workspaces/notebooks",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
 				"nbformat": 4,
 				"nbformat_minor": 2,
 				"bigDataPool": {
-					"referenceName": "[parameters('Notebook_properties_bigDataPool_referenceName')]",
+					"referenceName": "[parameters('Notebook1_properties_bigDataPool_referenceName')]",
 					"type": "BigDataPoolReference"
 				},
 				"sessionProperties": {

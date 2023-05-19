@@ -30,7 +30,7 @@
 				}
 			}
 		},
-		"Notebook_properties_bigDataPool_referenceName": {
+		"Notebook1_properties_bigDataPool_referenceName": {
 			"value": "sparkpool"
 		},
 		"Notebook2_properties_bigDataPool_referenceName": {
