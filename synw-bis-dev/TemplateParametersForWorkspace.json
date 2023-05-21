@@ -11,7 +11,7 @@
 		"synw-bis-dev-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synw-bis-dev.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
-		"Pipeline1_properties_0_typeProperties": {
+		"Pipeline111_properties_0_typeProperties": {
 			"value": ""
 		},
 		"AzureDataLakeStorage_ls_myurl": {

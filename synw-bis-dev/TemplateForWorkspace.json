@@ -16,7 +16,7 @@
 			"metadata": "Secure string for 'connectionString' of 'synw-bis-dev-WorkspaceDefaultSqlServer'",
 			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synw-bis-dev.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
-		"Pipeline1_properties_0_typeProperties": {
+		"Pipeline111_properties_0_typeProperties": {
 			"type": "int"
 		},
 		"AzureDataLakeStorage_ls_myurl": {
@@ -51,30 +51,6 @@
 		"workspaceId": "[concat('Microsoft.Synapse/workspaces/', parameters('workspaceName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('workspaceName'), '/Pipeline1')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "Wait1",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": "[parameters('Pipeline1_properties_0_typeProperties')]"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/Pipeline11')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
@@ -122,6 +98,30 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/Parquet_ds')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Pipeline111')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": "[parameters('Pipeline111_properties_0_typeProperties')]"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/lookup')]",
