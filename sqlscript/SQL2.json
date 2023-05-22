@@ -2,7 +2,7 @@
 	"name": "SQL2",
 	"properties": {
 		"content": {
-			"query": "select 2+2+2\nselect 'hiiii'",
+			"query": "select 2+2+2\nselect 'hiiiii'",
 			"metadata": {
 				"language": "sql"
 			},
