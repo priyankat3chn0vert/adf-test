@@ -19,6 +19,14 @@
 		"Pipeline111_properties_0_typeProperties": {
 			"type": "int"
 		},
+		"AzureDataLakeStorage_ls_myurl": {
+			"type": "string",
+			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net/"
+		},
+		"synw-bis-dev-WorkspaceDefaultStorage_myurl": {
+			"type": "string",
+			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net"
+		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"type": "object",
 			"defaultValue": {
@@ -327,7 +335,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "https://stbisdeveuw.dfs.core.windows.net/",
+					"url": "[parameters('AzureDataLakeStorage_ls_myurl')]",
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage_ls_accountKey')]"
@@ -355,10 +363,7 @@
 				"annotations": [],
 				"type": "AzureSqlDW",
 				"typeProperties": {
-					"connectionString": {
-						"type": "SecureString",
-						"value": "[parameters('synw-bis-dev-WorkspaceDefaultSqlServer_connectionString')]"
-					}
+					"connectionString": "[parameters('synw-bis-dev-WorkspaceDefaultSqlServer_connectionString')]"
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",
@@ -377,7 +382,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "https://stbisdeveuw.dfs.core.windows.net"
+					"url": "[parameters('synw-bis-dev-WorkspaceDefaultStorage_myurl')]"
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",
@@ -416,7 +421,7 @@
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
 				"content": {
-					"query": "select 2+2+2\nselect 'hiii'",
+					"query": "select 2+2+2\nselect 'hiiii'",
 					"metadata": {
 						"language": "sql"
 					},
