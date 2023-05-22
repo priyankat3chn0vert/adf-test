@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://azure-key-vault-pd.vault.azure.net/"
+			"baseUrl": "https://azure-key-vault-cicd.vault.azure.net/"
 		}
 	}
 }
