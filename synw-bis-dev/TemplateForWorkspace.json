@@ -438,7 +438,7 @@
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
 				"content": {
-					"query": "select 2+2+2\nselect 'hiiiii'",
+					"query": "select 2+2+2\nselect 'hiiii'",
 					"metadata": {
 						"language": "sql"
 					},
