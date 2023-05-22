@@ -14,9 +14,6 @@
 		"Pipeline111_properties_0_typeProperties": {
 			"value": ""
 		},
-		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
-			"value": ""
-		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"value": {
 				"location": "AutoResolve",

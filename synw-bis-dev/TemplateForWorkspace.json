@@ -19,10 +19,6 @@
 		"Pipeline111_properties_0_typeProperties": {
 			"type": "int"
 		},
-		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
-			"type": "secureString",
-			"metadata": "Secure string for 'baseUrl' of 'AzureKeyVault_ls'"
-		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"type": "object",
 			"defaultValue": {
@@ -345,19 +341,6 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/AzureKeyVault_ls')]",
-			"type": "Microsoft.Synapse/workspaces/linkedServices",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('AzureKeyVault_ls_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/synw-bis-dev-WorkspaceDefaultSqlServer')]",
