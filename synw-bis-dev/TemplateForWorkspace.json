@@ -38,6 +38,12 @@
 				}
 			}
 		},
+		"sql1_properties_content_currentConnection_databaseName": {
+			"type": "string"
+		},
+		"sql1_properties_content_currentConnection_poolName": {
+			"type": "string"
+		},
 		"Notebook1_properties_bigDataPool_referenceName": {
 			"type": "string",
 			"defaultValue": "sparkpool"
@@ -400,6 +406,26 @@
 			"properties": {
 				"type": "ManagedIdentity",
 				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/sql1')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "select 1+1",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "[parameters('sql1_properties_content_currentConnection_databaseName')]",
+						"poolName": "[parameters('sql1_properties_content_currentConnection_poolName')]"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
 			},
 			"dependsOn": []
 		},

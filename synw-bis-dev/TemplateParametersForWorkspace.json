@@ -30,6 +30,12 @@
 				}
 			}
 		},
+		"sql1_properties_content_currentConnection_databaseName": {
+			"value": ""
+		},
+		"sql1_properties_content_currentConnection_poolName": {
+			"value": ""
+		},
 		"Notebook1_properties_bigDataPool_referenceName": {
 			"value": "sparkpool"
 		},
