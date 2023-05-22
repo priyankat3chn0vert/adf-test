@@ -19,17 +19,9 @@
 		"Pipeline111_properties_0_typeProperties": {
 			"type": "int"
 		},
-		"AzureDataLakeStorage_ls_myurl": {
-			"type": "string",
-			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net/"
-		},
 		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
 			"type": "secureString",
 			"metadata": "Secure string for 'baseUrl' of 'AzureKeyVault_ls'"
-		},
-		"synw-bis-dev-WorkspaceDefaultStorage_myurl": {
-			"type": "string",
-			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net"
 		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"type": "object",
@@ -41,6 +33,12 @@
 					"timeToLive": 0
 				}
 			}
+		},
+		"SQL2_properties_content_currentConnection_databaseName": {
+			"type": "string"
+		},
+		"SQL2_properties_content_currentConnection_poolName": {
+			"type": "string"
 		},
 		"sql1_properties_content_currentConnection_databaseName": {
 			"type": "string"
@@ -333,7 +331,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('AzureDataLakeStorage_ls_myurl')]",
+					"url": "https://stbisdeveuw.dfs.core.windows.net/",
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage_ls_accountKey')]"
@@ -374,7 +372,10 @@
 				"annotations": [],
 				"type": "AzureSqlDW",
 				"typeProperties": {
-					"connectionString": "[parameters('synw-bis-dev-WorkspaceDefaultSqlServer_connectionString')]"
+					"connectionString": {
+						"type": "SecureString",
+						"value": "[parameters('synw-bis-dev-WorkspaceDefaultSqlServer_connectionString')]"
+					}
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",
@@ -393,7 +394,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('synw-bis-dev-WorkspaceDefaultStorage_myurl')]"
+					"url": "https://stbisdeveuw.dfs.core.windows.net"
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",
@@ -423,6 +424,26 @@
 			"properties": {
 				"type": "ManagedIdentity",
 				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL2')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "select 2+2",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "[parameters('SQL2_properties_content_currentConnection_databaseName')]",
+						"poolName": "[parameters('SQL2_properties_content_currentConnection_poolName')]"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
 			},
 			"dependsOn": []
 		},
