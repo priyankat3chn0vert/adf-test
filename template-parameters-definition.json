@@ -58,7 +58,7 @@
                     "username": "=",
                     "connectionString": "|:-connectionString:secureString",
                     "secretAccessKey": "|",
-                    "url": "=:-myurl:string"
+                    "url": "-:-myurl:string"
                 }
         },
         "AzureDataLakeStore": {
