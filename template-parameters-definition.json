@@ -52,6 +52,7 @@
         }
     },
     "Microsoft.Synapse/workspaces/linkedServices": {
+        "*":{
         "properties": {
                 "typeProperties": {
                     "accountName": "=",
@@ -60,6 +61,7 @@
                     "secretAccessKey": "|",
                     "url": "=:-myurl:string"
                 }
+        }
         },
         "AzureDataLakeStore": {
             "properties": {
