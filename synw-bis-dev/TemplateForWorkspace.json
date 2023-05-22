@@ -23,6 +23,10 @@
 			"type": "string",
 			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net/"
 		},
+		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
+			"type": "secureString",
+			"metadata": "Secure string for 'baseUrl' of 'AzureKeyVault_ls'"
+		},
 		"synw-bis-dev-WorkspaceDefaultStorage_myurl": {
 			"type": "string",
 			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net"
@@ -343,6 +347,19 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AzureKeyVault_ls')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault_ls_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/synw-bis-dev-WorkspaceDefaultSqlServer')]",
