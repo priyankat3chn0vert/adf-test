@@ -14,14 +14,8 @@
 		"Pipeline111_properties_0_typeProperties": {
 			"value": ""
 		},
-		"AzureDataLakeStorage_ls_myurl": {
-			"value": "https://stbisdeveuw.dfs.core.windows.net/"
-		},
 		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
 			"value": ""
-		},
-		"synw-bis-dev-WorkspaceDefaultStorage_myurl": {
-			"value": "https://stbisdeveuw.dfs.core.windows.net"
 		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"value": {

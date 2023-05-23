@@ -19,17 +19,9 @@
 		"Pipeline111_properties_0_typeProperties": {
 			"type": "int"
 		},
-		"AzureDataLakeStorage_ls_myurl": {
-			"type": "string",
-			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net/"
-		},
 		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
 			"type": "secureString",
 			"metadata": "Secure string for 'baseUrl' of 'AzureKeyVault_ls'"
-		},
-		"synw-bis-dev-WorkspaceDefaultStorage_myurl": {
-			"type": "string",
-			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net"
 		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"type": "object",
@@ -68,7 +60,31 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('workspaceName'), '/Pipeline11')]",
+			"name": "[concat(parameters('workspaceName'), '/Pipeline111')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": "[parameters('Pipeline111_properties_0_typeProperties')]"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Pipeline12')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
@@ -114,30 +130,6 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/Parquet_ds')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/Pipeline111')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "Wait1",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": "[parameters('Pipeline111_properties_0_typeProperties')]"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/lookup')]",
@@ -339,7 +331,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('AzureDataLakeStorage_ls_myurl')]",
+					"url": "https://stbisdeveuw.dfs.core.windows.net/",
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage_ls_accountKey')]"
@@ -399,7 +391,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('synw-bis-dev-WorkspaceDefaultStorage_myurl')]"
+					"url": "https://stbisdeveuw.dfs.core.windows.net"
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",
@@ -438,7 +430,7 @@
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
 				"content": {
-					"query": "select 2+2+2\nselect 'hiiii'",
+					"query": "select 2+2+2\nselect 'hiii'",
 					"metadata": {
 						"language": "sql"
 					},
