@@ -84,7 +84,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/Pipeline12')]",
+			"name": "[concat(parameters('workspaceName'), '/Pipeline123')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
