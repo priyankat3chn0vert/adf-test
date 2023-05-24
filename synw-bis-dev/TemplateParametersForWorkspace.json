@@ -8,20 +8,17 @@
 		"AzureDataLakeStorage_ls_accountKey": {
 			"value": ""
 		},
+		"AzureDataLakeStorage_ls2_accountKey": {
+			"value": ""
+		},
 		"synw-bis-dev-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synw-bis-dev.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
 		"Pipeline111_properties_0_typeProperties": {
 			"value": ""
 		},
-		"AzureDataLakeStorage_ls_myurl": {
-			"value": "https://stbisdeveuw.dfs.core.windows.net/"
-		},
 		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
 			"value": ""
-		},
-		"synw-bis-dev-WorkspaceDefaultStorage_myurl": {
-			"value": "https://stbisdeveuw.dfs.core.windows.net"
 		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"value": {
@@ -45,7 +42,7 @@
 		"sql1_properties_content_currentConnection_poolName": {
 			"value": ""
 		},
-		"Notebook1_properties_bigDataPool_referenceName": {
+		"Notebook10_properties_bigDataPool_referenceName": {
 			"value": "sparkpool"
 		},
 		"Notebook2_properties_bigDataPool_referenceName": {

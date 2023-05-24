@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_ls'"
 		},
+		"AzureDataLakeStorage_ls2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_ls2'"
+		},
 		"synw-bis-dev-WorkspaceDefaultSqlServer_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'synw-bis-dev-WorkspaceDefaultSqlServer'",
@@ -19,17 +23,9 @@
 		"Pipeline111_properties_0_typeProperties": {
 			"type": "int"
 		},
-		"AzureDataLakeStorage_ls_myurl": {
-			"type": "securestring",
-			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net/"
-		},
 		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
 			"type": "secureString",
 			"metadata": "Secure string for 'baseUrl' of 'AzureKeyVault_ls'"
-		},
-		"synw-bis-dev-WorkspaceDefaultStorage_myurl": {
-			"type": "securestring",
-			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net"
 		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"type": "object",
@@ -54,7 +50,7 @@
 		"sql1_properties_content_currentConnection_poolName": {
 			"type": "string"
 		},
-		"Notebook1_properties_bigDataPool_referenceName": {
+		"Notebook10_properties_bigDataPool_referenceName": {
 			"type": "string",
 			"defaultValue": "sparkpool"
 		},
@@ -339,10 +335,33 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('AzureDataLakeStorage_ls_myurl')]",
+					"url": "https://stbisdeveuw.dfs.core.windows.net/",
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage_ls_accountKey')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "AutoResolveIntegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/AzureDataLakeStorage_ls2')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "https://stbisdeveuw.dfs.core.windows.net/",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage_ls2_accountKey')]"
 					}
 				},
 				"connectVia": {
@@ -380,7 +399,10 @@
 				"annotations": [],
 				"type": "AzureSqlDW",
 				"typeProperties": {
-					"connectionString": "[parameters('synw-bis-dev-WorkspaceDefaultSqlServer_connectionString')]"
+					"connectionString": {
+						"type": "SecureString",
+						"value": "[parameters('synw-bis-dev-WorkspaceDefaultSqlServer_connectionString')]"
+					}
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",
@@ -399,7 +421,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('synw-bis-dev-WorkspaceDefaultStorage_myurl')]"
+					"url": "https://stbisdeveuw.dfs.core.windows.net"
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",
@@ -473,14 +495,14 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/Notebook1')]",
+			"name": "[concat(parameters('workspaceName'), '/Notebook10')]",
 			"type": "Microsoft.Synapse/workspaces/notebooks",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
 				"nbformat": 4,
 				"nbformat_minor": 2,
 				"bigDataPool": {
-					"referenceName": "[parameters('Notebook1_properties_bigDataPool_referenceName')]",
+					"referenceName": "[parameters('Notebook10_properties_bigDataPool_referenceName')]",
 					"type": "BigDataPoolReference"
 				},
 				"sessionProperties": {
