@@ -73,7 +73,7 @@
                     "baseUrl": "=:-myurl:securestring"
                 }
             }
-        } },    
+        },    
         "AzureDataLakeStore": {
             "properties": {
                 "typeProperties": {
