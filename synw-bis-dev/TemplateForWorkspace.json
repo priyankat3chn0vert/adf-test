@@ -19,9 +19,17 @@
 		"Pipeline111_properties_0_typeProperties": {
 			"type": "int"
 		},
+		"AzureDataLakeStorage_ls_myurl": {
+			"type": "securestring",
+			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net/"
+		},
 		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
 			"type": "secureString",
 			"metadata": "Secure string for 'baseUrl' of 'AzureKeyVault_ls'"
+		},
+		"synw-bis-dev-WorkspaceDefaultStorage_myurl": {
+			"type": "securestring",
+			"defaultValue": "https://stbisdeveuw.dfs.core.windows.net"
 		},
 		"AutoResolveIntegrationRuntime_properties_typeProperties_computeProperties": {
 			"type": "object",
@@ -84,7 +92,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/Pipeline123')]",
+			"name": "[concat(parameters('workspaceName'), '/Pipeline_123')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
@@ -331,7 +339,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "https://stbisdeveuw.dfs.core.windows.net/",
+					"url": "[parameters('AzureDataLakeStorage_ls_myurl')]",
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage_ls_accountKey')]"
@@ -391,7 +399,7 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "https://stbisdeveuw.dfs.core.windows.net"
+					"url": "[parameters('synw-bis-dev-WorkspaceDefaultStorage_myurl')]"
 				},
 				"connectVia": {
 					"referenceName": "AutoResolveIntegrationRuntime",
